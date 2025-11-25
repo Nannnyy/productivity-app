@@ -2,16 +2,16 @@
 
 - Pomodoro, Produtividade e Tarefas
 
-| Etapa | Módulo | Tarefas Chave | 
-|-------|--------|---------------|
-| Conexão DB | Conexão DB | Configurar conexão com Postgres |
-|            | Conexão DB | Inicializar SQLAlchemy e Bases declarativas |
-| Modelos ORM | Conexão DB | Definir os models: User, Task, PomodoroSession |
-|             | Conexão DB | Criar primeira migration |
-| Autenticação | Registro/Login | Implementar hash de senha |
+| Etapa | Módulo | Tarefas Chave | Responsável | Finalizado |
+|-------|--------|---------------|-------------|------------|
+| Conexão DB | Conexão DB | Configurar conexão com Postgres | Pedro | Sim |
+|            | Conexão DB | Inicializar SQLAlchemy e Bases declarativas | Pedro | Sim |
+| Modelos ORM | Conexão DB | Definir os models: User, Task, PomodoroSession | Pedro | Parcial |
+|             | Conexão DB | Criar primeira migration | Pedro | Sim |
+| Autenticação | Registro/Login | Implementar hash de senha | 
 |              | Registro/Login | Criar resource do usuário (CRUD) |
-| Frontend Básico | Frontend | Desenvolver página inicial de registro e login |
-|                 | Configuração | Implementar tela de configuração do usuário e configuração de sessão (st.session_state) |
+| Frontend Básico | Frontend | Desenvolver página inicial de registro e login | Pedro | Não |
+|                 | Configuração | Implementar tela de configuração do usuário e configuração de sessão (st.session_state) | Pedro | Não |
 | Gerenciamento de Tarefas | Lógica | Criar resource para o modelo de Task (Adicionar, listar, concluir, excluir) |
 |                          | Frontend | Criar renderização para o gerenciamento de tarefas (Adicionar, listar, concluir, excluir) |
 | Pomodoro Timer | Lógica | Implementar resource e lógica do timer pomodoro |
