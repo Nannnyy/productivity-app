@@ -1,6 +1,6 @@
 from datetime import timezone
 import sqlalchemy as sa
-from  app.models.database import Base
+from  models.database import Base
 
 class Task(Base):
     __tablename__ = "task"

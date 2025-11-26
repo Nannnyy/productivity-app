@@ -15,7 +15,7 @@ PORT = os.getenv('PORT')
 
 PASSWORD_ENCODED = quote_plus(PASSWORD)
 
-DATABASE_URL = f'mysql+mysqldb://{USERNAME}:{PASSWORD_ENCODED}@{HOST}:{PORT}/{DATABASE}'
+DATABASE_URL = f'postgresql+psycopg2://{USERNAME}:{PASSWORD_ENCODED}@{HOST}:{PORT}/{DATABASE}'
 
 class DatabaseSession:
     
