@@ -1,0 +1,15 @@
+[theme]
+primaryColor = "#B7B7CD" 
+backgroundColor = "#E6E6E6"
+secondaryBackgroundColor = "#B7B7CD"  
+textColor = "#000000"  
+font = "serif"  # Default font
+
+[client]
+showSidebarNavigation = false
+toolbarMode = "minimal"
+
+
+[server]
+port = "8090"
+headless = true
