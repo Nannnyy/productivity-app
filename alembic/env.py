@@ -20,7 +20,7 @@ if project_root not in sys.path:
 from app.models.database import Base
 
 # Import all models to ensure they are registered with Base.metadata
-from app.models import User, Task
+from app.models import User, Task, PomodoroUserConfig, PomodoroSession, PomodoroCycle
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
