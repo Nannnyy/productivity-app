@@ -14,8 +14,8 @@
 |                 | Configuração | Implementar tela de configuração do usuário e configuração de sessão (st.session_state) | Pedro | Parcial (CookieManagement feito) |
 | Gerenciamento de Tarefas | Lógica | Criar resource para o modelo de Task (Adicionar, listar, concluir, excluir) |
 |                          | Frontend | Criar renderização para o gerenciamento de tarefas (Adicionar, listar, concluir, excluir) |
-| Pomodoro Timer | Lógica | Implementar resource e lógica do timer pomodoro |
-|                | Frontend | Criar a renderização para o timer do pomodoro |
+| Pomodoro Timer | Lógica | Implementar resource e lógica do timer pomodoro | Carol | Sim
+|                | Frontend | Criar a renderização para o timer do pomodoro | Carol | Sim
 | Histórico | Lógica | Implementar lógica no resource de Pomodoro e Tarefas para salvar as concluidas no banco |
 |           | Frontend | Criar a renderização da página de histórico|
 | Dashboard | Frontend | Criar dashboard com as visualizações em gráficos das informações |
