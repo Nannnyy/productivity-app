@@ -13,6 +13,28 @@ class PomodoroResource():
         self.db = DatabaseSession()
         self.session = self.db.get_session()
     
+    def update_config(
+        self, 
+        user_id: int,
+        work_minutes: int,
+        long_break_minutes: int,
+        short_break_minutes: int,
+        pomodoros_per_cycle: int
+    ):
+        try:
+            config = self.get_config(user_id)
+            config.work_minutes = work_minutes
+            config.short_break_minutes = short_break_minutes
+            config.long_break_minutes = long_break_minutes
+            config.pomodoros_per_cycle = pomodoros_per_cycle
+            self.session.commit()
+            return [True, config]
+        except Exception as e:
+            self.session.rollback()
+            traceback.print_exc()
+            return [False, e]
+    
+    
     def get_config(self, user_id: int):
         config = self.session.scalar(
             select(PomodoroUserConfig).where(PomodoroUserConfig.user_id == user_id)
@@ -244,6 +266,7 @@ class PomodoroResource():
 
             else:  
                 session.status = "running"
+                session.started_at = now
                 self.session.commit()
                 return [True, "Pomodoro retomado!", session]
 

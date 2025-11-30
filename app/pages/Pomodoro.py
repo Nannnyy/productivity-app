@@ -7,17 +7,13 @@ from resources import PomodoroResource
 
 class Pomodoro(BasePage):
     def __init__(self):
-        super().__init__("Pomodoro", '', 'centered', 'collapsed')    
+        super().__init__("Pomodoro", ':material/timer:', 'centered', 'collapsed')    
         st.session_state['page'] = 'Pomodoro'
         
         self.userResource = UserResource()
         self.pomodoroResource = PomodoroResource()
         self.user_id = self.userResource.get_user_id_by_cookie()
-        
-        # if 'timer_last_update' not in st.session_state:
-        #     st.session_state.timer_last_update = None
-        # if 'force_rerun' not in st.session_state:
-        #     st.session_state.force_rerun = False
+        self.config_pomodoro = self.pomodoroResource.get_config(self.user_id)
     
     def get_current_state(self):
         session = self.pomodoroResource.get_current_session(self.user_id)
@@ -60,7 +56,7 @@ class Pomodoro(BasePage):
         state = self.get_current_state()
         session = state["session"]
 
-        timer_text = "25:00"
+        timer_text = f"{self.config_pomodoro.work_minutes}:00"
         session_type = "Pronto para começar"
         pomodoros_text = "0 pomodoros"
 
@@ -113,13 +109,13 @@ class Pomodoro(BasePage):
         
         col1, col2, col3 = st.columns(3)
         
-        if col3.button('Resetar Tudo', use_container_width=True, type="secondary"):
+        if col3.button('Resetar Tudo', use_container_width=True, type="secondary", icon=':material/rotate_auto:'):
             self.pomodoroResource.reset_all(self.user_id)
             st.toast('Tudo resetado')
             st.rerun()
         
         if not session:
-            if col1.button('Iniciar Pomodoro', use_container_width=True, type="primary"):
+            if col1.button('Iniciar Pomodoro', use_container_width=True, type="primary", icon=':material/play_arrow:'):
                 success, result = self.pomodoroResource.start_pomodoro(self.user_id)
                 if success:
                     st.toast('Pomodoro Iniciado')
@@ -127,20 +123,21 @@ class Pomodoro(BasePage):
         else:
             if session.status in ('running', 'paused'):
                 pause_label = "Pausar" if session.status == "running" else "Retomar"
-                if col1.button(pause_label, use_container_width=True, type="primary"):
+                pause_icon = ':material/pause:' if session.status == "running" else ':material/resume:'
+                if col1.button(pause_label, use_container_width=True, type="primary", icon=pause_icon):
                     success, msg, sess = self.pomodoroResource.toggle_pause(self.user_id)
                     if success:
                         st.toast(msg)
                     st.rerun()
                 
                 if session.type == "work":
-                    if col2.button("Completar Sessão", use_container_width=True, type="primary"):
+                    if col2.button("Completar Sessão", use_container_width=True, type="primary", icon=':material/skip_next:'):
                         success, new_sess = self.pomodoroResource.complete_current_session(self.user_id)
                         if success:
                             st.toast("Sessão concluída")
                         st.rerun()
                 else:
-                    if col2.button("Pular Intervalo", use_container_width=True, type="secondary"):
+                    if col2.button("Pular Intervalo", use_container_width=True, type="secondary", icon=':material/skip_next:'):
                         success, new_sess = self.pomodoroResource.skip_break(self.user_id)
                         if success:
                             st.toast("Pausa Pulada")
@@ -153,10 +150,44 @@ class Pomodoro(BasePage):
             time.sleep(1)
             st.rerun()
 
+    @st.dialog('Configuração Pomodoro')
+    def draw_config_pomodoro(self):
+        work = st.number_input(
+            'Tempo de trabalho (min)', min_value=1, max_value=120,
+            value=self.config_pomodoro.work_minutes
+        )
+        
+        short_break = st.number_input(
+            'Pausa Curta (min)', min_value=1, max_value=30,
+            value=self.config_pomodoro.short_break_minutes
+        )
+        
+        long_break = st.number_input(
+            "Pausa longa (min)", min_value=1, max_value=60,
+            value=self.config_pomodoro.long_break_minutes
+        )
+        
+        cycle = st.number_input(
+            'Clicos antes da pausa longa', min_value=1, max_value=10,
+            value=self.config_pomodoro.pomodoros_per_cycle
+        )
+        
+        if st.button("Salvar", type="primary"):
+            success, msg = self.pomodoroResource.update_config(
+                self.user_id, work, long_break, short_break, cycle
+            )
+            
+            if success:
+                st.rerun()
+            else:
+                st.error(f"Ocorreu um erro ao atualizar configurações: {msg}")
     
     def draw(self):
         st.title("Pomodoro Timer")
-
+        col1, col2 = st.columns([6.5, 2], gap='medium')
+        if col2.button('Configurações', icon=':material/settings:'):
+            self.draw_config_pomodoro()
+        
         self.draw_timer()
         self.draw_buttons()
 
