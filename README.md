@@ -12,8 +12,8 @@
 |              | Registro/Login | Criar resource do usuário (CRUD) | Pedro | Sim |
 | Frontend Básico | Frontend | Desenvolver página inicial de registro e login | Pedro | Sim |
 |                 | Configuração | Implementar tela de configuração do usuário e configuração de sessão (st.session_state) | Pedro | Parcial (CookieManagement feito) |
-| Gerenciamento de Tarefas | Lógica | Criar resource para o modelo de Task (Adicionar, listar, concluir, excluir) |
-|                          | Frontend | Criar renderização para o gerenciamento de tarefas (Adicionar, listar, concluir, excluir) |
+| Gerenciamento de Tarefas | Lógica | Criar resource para o modelo de Task (Adicionar, listar, concluir, excluir) | Dani | Sim
+|                          | Frontend | Criar renderização para o gerenciamento de tarefas (Adicionar, listar, concluir, excluir) | Dani | Sim
 | Pomodoro Timer | Lógica | Implementar resource e lógica do timer pomodoro | Carol | Sim
 |                | Frontend | Criar a renderização para o timer do pomodoro | Carol | Sim
 | Histórico | Lógica | Implementar lógica no resource de Pomodoro e Tarefas para salvar as concluidas no banco |
