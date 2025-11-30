@@ -1,7 +1,7 @@
 from datetime import timezone
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
-from models.database import Base
+from .database import Base
 
 class PomodoroCycle(Base):
     __tablename__ = "pomodoro_cycle"

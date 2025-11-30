@@ -14,8 +14,17 @@ class Dashboard(BasePage):
         if not isAuthenticated:
             st.switch_page('main.py')
         with st.container(border=True):
-            # Código de exemplo
             st.write(f"Bem-vindo ao Dashboard, {user_id}")
+            
+            st.divider()
+            
+            col1, col2 = st.columns(2)
+            
+            if col1.button("Pomodoro Timer", use_container_width=True, type="primary"):
+                st.switch_page('pages/Pomodoro.py')
+                
+            if col2.button("Tarefas", use_container_width=True, type="secondary"):
+                st.switch_page('pages/Tasks.py')
     
 if __name__ == "__main__":
         dashboard = Dashboard()

@@ -1,6 +1,6 @@
 import streamlit as st
 from partials.BasePage import BasePage
-from app.resources import UserResource
+from resources import UserResource
 
 class RegistroUsuario(BasePage):
     def __init__(self):

@@ -1,6 +1,6 @@
 from datetime import timezone
 import sqlalchemy as sa
-from  models.database import Base
+from .database import Base
 
 class User(Base):
     __tablename__ = "user"
