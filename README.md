@@ -17,6 +17,6 @@
 | Pomodoro Timer | Lógica | Implementar resource e lógica do timer pomodoro | Carol | Sim
 |                | Frontend | Criar a renderização para o timer do pomodoro | Carol | Sim
 | Histórico | Lógica | Implementar lógica no resource de Pomodoro e Tarefas para salvar as concluidas no banco |
-|           | Frontend | Criar a renderização da página de histórico| Luna 
-| Dashboard | Frontend | Criar dashboard com as visualizações em gráficos das informações | Luna 
+|           | Frontend | Criar a renderização da página de histórico| Luna | Não 
+| Dashboard | Frontend | Criar dashboard com as visualizações em gráficos das informações | Luna | Não
 | Finalização | Geral | Criar documentação sobre uso, BD, deploy e tals |
