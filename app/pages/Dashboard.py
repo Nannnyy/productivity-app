@@ -417,10 +417,7 @@ class Dashboard:
         </div>
         """, unsafe_allow_html=True)
         
-        if state["cycle"]:
-            st.progress(state["completed_works"] / state["total_works"])
-        elif state["cycle_completed"]:
-            st.progress(1.0)
+
         
         # Botões do Pomodoro centralizados
         if not session:
