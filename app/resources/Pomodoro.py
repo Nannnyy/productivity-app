@@ -293,6 +293,39 @@ class PomodoroResource():
             traceback.print_exc()
             return [False, str(e)]
     
+    def get_completed_cycles(self, user_id: int):
+        try:
+            stmt = (
+                select(PomodoroCycle)
+                .where(and_(
+                    PomodoroCycle.user_id == user_id,
+                    PomodoroCycle.status == "completed"
+                ))
+                .order_by(PomodoroCycle.completed_at.desc())
+            )
+            cycles = self.session.scalars(stmt).all()
+            return [True, cycles]
+        except Exception as e:
+            traceback.print_exc()
+            return [False, e]
+    
+    def get_completed_sessions(self, user_id: int):
+        try:
+            stmt = (
+                select(PomodoroSession)
+                .join(PomodoroCycle)
+                .where(and_(
+                    PomodoroCycle.user_id == user_id,
+                    PomodoroSession.status == "completed"
+                ))
+                .order_by(PomodoroSession.completed_at.desc())
+            )
+            sessions = self.session.scalars(stmt).all()
+            return [True, sessions]
+        except Exception as e:
+            traceback.print_exc()
+            return [False, e]
+    
     
     
     

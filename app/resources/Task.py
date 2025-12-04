@@ -62,3 +62,16 @@ class TaskResource():
             self.session.rollback()
             traceback.print_exc()
             return [False, str(e)]
+    
+    def get_completed_tasks(self, user_id: int):
+        try:
+            stmt = (
+                select(Task)
+                .where(Task.user_id == user_id, Task.finished_at.isnot(None))
+                .order_by(Task.finished_at.desc())
+            )
+            tasks = self.session.scalars(stmt).all()
+            return [True, tasks]
+        except Exception as e:
+            traceback.print_exc()
+            return [False, e]

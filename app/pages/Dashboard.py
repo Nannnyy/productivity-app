@@ -18,13 +18,16 @@ class Dashboard(BasePage):
             
             st.divider()
             
-            col1, col2 = st.columns(2)
+            col1, col2, col3 = st.columns(3)
             
             if col1.button("Pomodoro Timer", use_container_width=True, type="primary"):
                 st.switch_page('pages/Pomodoro.py')
                 
             if col2.button("Tarefas", use_container_width=True, type="secondary"):
                 st.switch_page('pages/Tasks.py')
+                
+            if col3.button("Histórico", use_container_width=True):
+                st.switch_page('pages/History.py')
     
 if __name__ == "__main__":
         dashboard = Dashboard()
