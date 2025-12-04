@@ -110,7 +110,7 @@ class UserResource():
                 matched = []
                 if user_exist.email == email:
                     matched.append("email")
-                if user_exist.usuario == username:
+                if user_exist.username == username:
                     matched.append("usuário")
 
                 return [False, "Já existe um usuário com esse(s) dado(s): " + ", ".join(matched)]
