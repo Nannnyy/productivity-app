@@ -22,6 +22,12 @@ class RegistroUsuario(BasePage):
         # CSS para design centralizado (mesmo da tela de login)
         st.markdown("""
         <style>
+        .stApp {
+            background-color: #ffffff;
+        }
+        .main .block-container {
+            background-color: #ffffff;
+        }
         .login-title {
             text-align: center;
             font-size: 2rem;
@@ -56,6 +62,39 @@ class RegistroUsuario(BasePage):
             font-size: 0.85rem;
             margin-top: 1rem;
             font-style: italic;
+        }
+        .stTextInput > div > div > input {
+            background-color: #f8f9fa !important;
+            border: 0.5px solid #e9ecef !important;
+            color: #1f1f1f !important;
+        }
+        .stTextInput > div > div > input:focus {
+            border-color: #333333 !important;
+            box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.25) !important;
+        }
+        .stTextInput button {
+            background-color: transparent !important;
+            border: none !important;
+            color: #000000 !important;
+        }
+        .stTextInput button:hover {
+            color: #000000 !important;
+            background-color: transparent !important;
+        }
+        .stButton > button[kind="secondary"] {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border: 1px solid #333333 !important;
+        }
+        .stButton > button[kind="secondary"]:hover {
+            background-color: #f8f9fa !important;
+            color: #000000 !important;
+        }
+        div[style*="border"] {
+            border: 1px solid #333333 !important;
+        }
+        .stContainer {
+            border: 1px solid #333333 !important;
         }
         </style>
         """, unsafe_allow_html=True)
