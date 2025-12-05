@@ -1,6 +1,6 @@
-FocusPom — Sistema de Produtividade, Pomodoro e Gerenciamento de Tarefas
+## FocusPom — Sistema de Produtividade, Pomodoro e Gerenciamento de Tarefas
 
-1. Visão Geral
+## 1. Visão Geral
 O FocusPom é uma aplicação web desenvolvida para auxiliar usuários na organização de tarefas e no gerenciamento do foco utilizando a técnica Pomodoro.
 O sistema integra:
 * Cadastro e login de usuários
@@ -10,14 +10,14 @@ O sistema integra:
 * Dashboard 
 O objetivo é fornecer uma ferramenta simples e eficiente para melhorar produtividade, foco e acompanhamento de desempenho.
 
-2. Objetivos do Sistema
+## 2. Objetivos do Sistema
 * Facilitar o planejamento diário de atividades
 * Aumentar foco usando ciclos Pomodoro
 * Registrar sessões concluídas
 * Exibir histórico de produtividade
 * Fornecer interface simples, leve e responsiva
 
-3. Funcionalidades
+## 3. Funcionalidades
 Autenticação
 * Registro de usuário
 * Login
@@ -37,7 +37,7 @@ Dashboard
    * Tempo total em Pomodoro
    * Dias mais produtivos
 
-4. Tecnologias
+## 4. Tecnologias
 * Front-end: Streamlit
 * Back-end: Python
 * ORM: SQLAlchemy
@@ -45,53 +45,57 @@ Dashboard
 * Banco de dados: PostgreSQL
 * Gerenciamento de dependências: requirements.txt
 
-5. Estrutura do Repositório
+## 5. Estrutura do Repositório
+
 productivity-app/
 ├─ app/
 │  ├─ main.py
 │  ├─ db.py
 │  ├─ models/
-│   │  ├─ Pomodoro.py
-│   │  ├─  Task.py
-│   │  ├─ User.py
-│   │  ├─ _init_.py
-│   │  └─database.py
+│  │  ├─ Pomodoro.py
+│  │  ├─ Task.py
+│  │  ├─ User.py
+│  │  ├─ __init__.py
+│  │  └─ database.py
 │  ├─ resources/
-│   │  ├─ CookieManager.py
-│   │  ├─ Pomodoro.py
-│   │  ├─ User.py
-│   │  └─ _init_.py
+│  │  ├─ CookieManager.py
+│  │  ├─ Pomodoro.py
+│  │  ├─ User.py
+│  │  └─ __init__.py
 │  ├─ pages/
-│   │  ├─ Dashboard.py
-│   │  ├─ Pomodoro.py
-│   │  └─ RegisterUser.py
+│  │  ├─ Dashboard.py
+│  │  ├─ Pomodoro.py
+│  │  └─ RegisterUser.py
 │  └─ partials/
-│   │  └─ BasePage.py
+│     └─ BasePage.py
 ├─ alembic/
 │  ├─ versions/
-│   │  ├─ 04db7a316a83_initial_migration.py
-│   │  ├─ 07fda1024bd1_add_timezone_in_datetime_fields_in_.py
-│   │  ├─ 16e59800ce9e_add_tables_for_pomodoro.py
-│   │  └─ b5e7a62b5ca4_remove_unique_constraint_user_id_in_.py
+│  │  ├─ 04db7a316a83_initial_migration.py
+│  │  ├─ 07fda1024bd1_add_timezone_in_datetime_fields_in_.py
+│  │  ├─ 16e59800ce9e_add_tables_for_pomodoro.py
+│  │  └─ b5e7a62b5ca4_remove_unique_constraint_user_id_in_.py
 │  ├─ script.py.mako
 │  ├─ env.py
 │  └─ README.md
 ├─ .streamlit/
-│  ├─ config.toml
+│  └─ config.toml
 ├─ .env.example
 ├─ .gitignore
 ├─ alembic.ini
 ├─ requirements.txt
 └─ README.md
-6. Instalação (Local)
-1. Clonar o repositório
+
+
+## 6. Instalação (Local)
+
+## 1. Clonar o repositório
 git clone <REPO_URL>
 cd productivity-app
 
 
 
 
-2. Criar ambiente virtual
+## 2. Criar ambiente virtual
 python -m venv venv
 source venv/bin/activate   # macOS/Linux
 venv\\Scripts\\activate      # Windows
@@ -99,13 +103,13 @@ venv\\Scripts\\activate      # Windows
 
 
 
-3. Instalar dependências
+## 3. Instalar dependências
 pip install -r requirements.txt
 
 
 
 
-4. Configurar variáveis de ambiente
+## 4. Configurar variáveis de ambiente
 Copie .env.example → .env e configure:
 * DATABASE_URL
 * SECRET_KEY
@@ -116,7 +120,7 @@ alembic upgrade head
 
 
 
-6. Executar o projeto
+## 6. Executar o projeto
 Frontend:
 streamlit run app/frontend.py
 
@@ -127,7 +131,7 @@ Backend:
 uvicorn app.main:app --reload
 
 
-7. Modelagem do Banco de Dados (DER)
+## 7. Modelagem do Banco de Dados (DER)
 Relacionamentos:
 * User (1) — (N) Task
 * User (1) — (N) PomodoroSession
@@ -164,7 +168,7 @@ CREATE TABLE pomodoro_sessions (
 );
 
 
-8. Endpoints Principais
+## 8. Endpoints Principais
 * POST /auth/register — Registrar usuário
 * POST /auth/login — Login
 * GET /tasks — Listar tarefas
@@ -173,7 +177,7 @@ CREATE TABLE pomodoro_sessions (
 * POST /pomodoros — Iniciar/registrar sessão
 * GET /pomodoros — Histórico
 
-9. Segurança
+## 9. Segurança
 * Senhas com hash
 * Uso de ORM
 * Validação no backend
@@ -194,7 +198,7 @@ CREATE TABLE pomodoro_sessions (
 | Documentação     | README, Documentação             | Leticia     | Concluído  |
 
 
-11. Integrantes
+## 11. Integrantes
 * Pedro — Backend / DB
 * Daniely — Tarefas / Frontend
 * Carol — Pomodoro
