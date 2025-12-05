@@ -119,24 +119,19 @@ alembic upgrade head
 
  5. Executar o projeto
 Frontend:
-streamlit run app/frontend.py
-
-
-
-
-Backend:
-uvicorn app.main:app --reload
+streamlit run app/main.py
 
 
 ## 7. Modelagem do Banco de Dados (DER)
 Relacionamentos:
 * User (1) — (N) Task
 * User (1) — (N) PomodoroSession
-* Task (1) — (N) PomodoroSession 
+* PomodoroCycle (1) — (N) PomodoroSession
+* User (1) — (1) PomodoroConfig
 
 Script SQL simplificado
 ```text
-CREATE TABLE users (
+CREATE TABLE user (
   id SERIAL PRIMARY KEY,
   username VARCHAR(150) UNIQUE NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
@@ -145,9 +140,9 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE tasks (
+CREATE TABLE task (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES user(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
   description TEXT,
   status VARCHAR(20) DEFAULT 'pending',
@@ -155,51 +150,65 @@ CREATE TABLE tasks (
   due_date TIMESTAMP WITH TIME ZONE
 );
 
+CREATE TABLE pomodoro_cycle (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES user(id) ON DELETE CASCADE,
+    cycle_number INTEGER NOT NULL,
+    started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    completed_at TIMESTAMPTZ,
+    status VARCHAR NOT NULL DEFAULT 'in_progress'
+);
 
-CREATE TABLE pomodoro_sessions (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  task_id INTEGER REFERENCES tasks(id) ON DELETE SET NULL,
-  start_time TIMESTAMP WITH TIME ZONE NOT NULL,
-  end_time TIMESTAMP WITH TIME ZONE,
-  duration INTEGER,
-  completed BOOLEAN DEFAULT false
+CREATE TABLE pomodoro_session (
+    id SERIAL PRIMARY KEY,
+    cycle_id INTEGER NOT NULL REFERENCES pomodoro_cycle(id) ON DELETE CASCADE,
+    type VARCHAR NOT NULL,
+    order_index INTEGER NOT NULL,
+    duration_minutes INTEGER NOT NULL,
+    remaining_seconds INTEGER,
+    status VARCHAR NOT NULL DEFAULT 'pending',
+    started_at TIMESTAMPTZ,
+    paused_at TIMESTAMPTZ,
+    completed_at TIMESTAMPTZ,
+    total_paused_seconds INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE pomodoro_user_config (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER UNIQUE REFERENCES user(id) ON DELETE CASCADE,
+
+    work_minutes INTEGER NOT NULL DEFAULT 25,
+    short_break_minutes INTEGER NOT NULL DEFAULT 5,
+    long_break_minutes INTEGER NOT NULL DEFAULT 15,
+    pomodoros_per_cycle INTEGER NOT NULL DEFAULT 4
 );
 ```
 
-
-## 8. Endpoints Principais
-* POST /auth/register — Registrar usuário
-* POST /auth/login — Login
-* GET /tasks — Listar tarefas
-* POST /tasks — Criar tarefa
-* PATCH /tasks/{id}/complete — Concluir
-* POST /pomodoros — Iniciar/registrar sessão
-* GET /pomodoros — Histórico
-
 ## 9. Segurança
-* Senhas com hash
-* Uso de ORM
-* Validação no backend
-* Proteção básica contra XSS no Streamlit
+* Senha armazenadas com hash SHA-256 (hashlib)
+* Uso do ORL SQLAlchemy (proteção contra SQL Injection)
+* Autenticação por cookie assinado com SHA-256 + salt secreto fixo
+* Validação de entradas no frontend (Streamlit)
 
 ## 10. Cronograma e Andamento
 
-| Módulo           | Tarefa                          | Responsável | Status     |
+| Módulo           | Tarefa                           | Responsável | Status     |
 |------------------|----------------------------------|-------------|------------|
 | Conexão DB       | Configurar Postgres + SQLAlchemy | Pedro       | Concluído  |
-| Modelos          | User, Task, PomodoroSession      | Pedro       | Concluído  |
-| Auth             | Registro/Login                   | Pedro       | Concluído  |
-| Tasks (API)      | CRUD                             | Daniely     | Concluído  |
-| Tasks (Frontend) | Interface                        | Daniely     | Concluído  |
-| Pomodoro         | Lógica + UI                      | Carol       | Concluído  |
-| Histórico        | Lógica + UI                      | Luna        | Concluído  |
+| Modelos          | User e Task                      | Pedro       | Concluído  |
+| Auth             | Registro/Login e telas           | Pedro       | Concluído  |
+| Tasks            | Lógica para tarefas e telas      | Daniely     | Concluído  |
+| Pomodoro (Models)| PomodoroCycle, PomodoroSession e PomodoroUserConfig | Carol | Concluído |
+| Pomodoro         | Lógica para pomodoro e telas     | Carol       | Concluído  |
+| Histórico        | Lógica para histórico e telas    | Luna        | Concluído  |
+| Dashboard        | Tela                             | Daniely     | Concluído  |
 | Documentação     | README, Documentação             | Leticia     | Concluído  |
 
 
 ## 11. Integrantes
-* Pedro — Backend / DB
-* Daniely — Tarefas / Frontend
-* Carol — Pomodoro
-* Luna — Histórico / Frontend
-* Letícia — Documentação
+* Pedro Henrique Barbosa da Cunha
+* Daniely Evellin da Silva Vasconcelos
+* Ana Carolina Santos Figueiredo
+* Estela Luna dos Santos Oliveira
+* Letícia Xavier Araújo Vasconcelos
