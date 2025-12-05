@@ -200,7 +200,6 @@ CREATE TABLE pomodoro_sessions (
 | Tasks (Frontend) | Interface                        | Daniely     | Concluído  |
 | Pomodoro         | Lógica + UI                      | Carol       | Concluído  |
 | Histórico        | Lógica + UI                      | Luna        | Concluído  |
-| Dashboard        | UI                               | —           | Em aberto  |
 | Documentação     | README, Documentação             | Leticia     | Concluído  |
 
 
