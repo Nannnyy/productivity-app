@@ -179,28 +179,20 @@ CREATE TABLE pomodoro_sessions (
 * Validação no backend
 * Proteção básica contra XSS no Streamlit
 
-10. Cronograma e Andamento
--------------------------------------------------------------------------------
-Módulo          |              Tarefa              |   Responsável   |   Status
---------------------------------------------------------------------------------
-Conexão DB      | Configurar Postgres + SQLAlchemy |      Pedro      | Concluído
---------------------------------------------------------------------------------
-Modelos         |   User, Task, PomodoroSession    |      Pedro      | Concluído
---------------------------------------------------------------------------------
-Auth            |         Registro/Login           |      Pedro      | Concluído
---------------------------------------------------------------------------------
-Tasks (API)     |              CRUD                |     Daniely     | Concluído
---------------------------------------------------------------------------------
-Tasks (Frontend)|            Interface             |     Daniely     | Concluído
---------------------------------------------------------------------------------
-Pomodoro        |           Lógica + UI            |      Carol      | Concluído
---------------------------------------------------------------------------------
-Histórico       |           Lógica + UI            |       Luna      | Concluído
---------------------------------------------------------------------------------
-Dashboard       |                UI                |        —        | Em aberto
---------------------------------------------------------------------------------
-Documentação    |       README, Documentação       |     Leticia     | Concluído
---------------------------------------------------------------------------------
+## 10. Cronograma e Andamento
+
+| Módulo           | Tarefa                          | Responsável | Status     |
+|------------------|----------------------------------|-------------|------------|
+| Conexão DB       | Configurar Postgres + SQLAlchemy | Pedro       | Concluído  |
+| Modelos          | User, Task, PomodoroSession      | Pedro       | Concluído  |
+| Auth             | Registro/Login                   | Pedro       | Concluído  |
+| Tasks (API)      | CRUD                             | Daniely     | Concluído  |
+| Tasks (Frontend) | Interface                        | Daniely     | Concluído  |
+| Pomodoro         | Lógica + UI                      | Carol       | Concluído  |
+| Histórico        | Lógica + UI                      | Luna        | Concluído  |
+| Dashboard        | UI                               | —           | Em aberto  |
+| Documentação     | README, Documentação             | Leticia     | Concluído  |
+
 
 11. Integrantes
 * Pedro — Backend / DB
