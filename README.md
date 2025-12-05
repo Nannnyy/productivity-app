@@ -91,14 +91,14 @@ productivity-app/
 
 ## 6. Instalação (Local)
 
-# 1. Clonar o repositório
+ 1. Clonar o repositório
 git clone <REPO_URL>
 cd productivity-app
 
 
 
 
-# 2. Criar ambiente virtual
+ 2. Criar ambiente virtual
 python -m venv venv
 source venv/bin/activate   # macOS/Linux
 venv\\Scripts\\activate      # Windows
@@ -106,13 +106,13 @@ venv\\Scripts\\activate      # Windows
 
 
 
-# 3. Instalar dependências
+ 3. Instalar dependências
 pip install -r requirements.txt
 
 
 
 
-# 4. Configurar variáveis de ambiente
+ 4. Configurar variáveis de ambiente
 Copie .env.example → .env e configure:
 * DATABASE_URL
 * SECRET_KEY
@@ -123,7 +123,7 @@ alembic upgrade head
 
 
 
-# 5. Executar o projeto
+ 5. Executar o projeto
 Frontend:
 streamlit run app/frontend.py
 
