@@ -139,7 +139,9 @@ Relacionamentos:
 * User (1) — (N) Task
 * User (1) — (N) PomodoroSession
 * Task (1) — (N) PomodoroSession 
+
 Script SQL simplificado
+```text
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(150) UNIQUE NOT NULL,
@@ -169,6 +171,7 @@ CREATE TABLE pomodoro_sessions (
   duration INTEGER,
   completed BOOLEAN DEFAULT false
 );
+```
 
 
 ## 8. Endpoints Principais
