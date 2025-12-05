@@ -7,7 +7,6 @@ O sistema integra:
 * Criação e controle de tarefas
 * Timer Pomodoro com registro automático
 * Histórico de sessões
-* Dashboard 
 O objetivo é fornecer uma ferramenta simples e eficiente para melhorar produtividade, foco e acompanhamento de desempenho.
 
 ## 2. Objetivos do Sistema
@@ -31,11 +30,6 @@ Pomodoro
 Histórico
 * Listagem de sessões realizadas
 * Exibição das tarefas concluídas
-Dashboard
-* Visualizações gráficas sobre:
-   * Tarefas concluídas
-   * Tempo total em Pomodoro
-   * Dias mais produtivos
 
 ## 4. Tecnologias
 * Front-end: Streamlit
